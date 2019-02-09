@@ -6,15 +6,19 @@ var apiKey = "simN6+IoTAeS3mFDo3rCfA4lnxv1";
 
 $("#userSubmit").on("click", function() {
     var userEntry = document.getElementById("userEntry").value;
-    console.log(userEntry);
+    // console.log(userEntry);
 
     var input = [userEntry,[],false];
 Algorithmia.client(apiKey)
     .algo("nlp/ProfanityDetection/1.0.0")
     .pipe(input)
     .then(function(output) {
-        console.log(output);
+        var result = output.result
+        var objectProps = Object.getOwnPropertyNames(result);
+        console.log(objectProps[0]);
+        
     });
-})
+});
+
 
 
