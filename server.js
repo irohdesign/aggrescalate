@@ -8,8 +8,9 @@ var profCount = 0;
 // grabbing text
 
 $("#userSubmit").on("click", function() {
+    // grabbing values and clearing form
     var userEntry = document.getElementById("userEntry").value;
-    // console.log(userEntry);
+    $("#userEntry").val("");
 
     profCount = 0;
 
@@ -47,8 +48,8 @@ Algorithmia.client(apiKey)
         $("#results").append(returnText);
     });
 
-  
-    $("#userEntry").val("");
+    // sentiment API work
+    
     
 });
 
