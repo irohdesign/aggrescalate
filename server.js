@@ -2,6 +2,7 @@
 var client = Algorithmia.client('sim7Mx4n9rMzOwk+kcUidmfnlKs1');
 var apiKey = "simN6+IoTAeS3mFDo3rCfA4lnxv1";
 
+
 // global variable
 var profCount = 0;
 
@@ -20,17 +21,16 @@ Algorithmia.client(apiKey)
     .algo("nlp/ProfanityDetection/1.0.0")
     .pipe(input)
     .then(function(output) {
-        var result = output.result;
+        var objResult = output.result;
 
-        var objectProps = Object.getOwnPropertyNames(result);
-        // console.log(objectProps[0]);
-        console.log(result);
+        var objectProps = Object.getOwnPropertyNames(objResult);
+        console.log(objectProps);
+
         
         $.each(objectProps, function(index, value) {
-            console.log(value);
-            profCount++;
+            console.log(objectProps[index]);
+            console.log(output.result[objectProps[index]])
         })
-
         var returnText = $("<div>");
         var returnInfo;
         if(profCount > 1) {
