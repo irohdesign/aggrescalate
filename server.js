@@ -13,7 +13,7 @@ $("#userSubmit").on("click", function() {
     var userEntry = document.getElementById("userEntry").value;
     $("#userEntry").val("");
 
-    profCount = 0;
+    
 
     // profanity API work
     var input = [userEntry,[],false];
@@ -22,21 +22,30 @@ Algorithmia.client(apiKey)
     .pipe(input)
     .then(function(output) {
         var objResult = output.result;
+        var profTotal = 0;
 
         var objectProps = Object.getOwnPropertyNames(objResult);
         console.log(objectProps);
 
         
         $.each(objectProps, function(index, value) {
+            
+            var num = output.result[objectProps[index]]
             console.log(objectProps[index]);
-            console.log(output.result[objectProps[index]])
+            console.log(num);
+            profTotal += num;
+
         })
         var returnText = $("<div>");
         var returnInfo;
-        if(profCount > 1) {
-            profSyntax = "profanities"
-        } else {
+
+        profCount = objectProps.length;
+        console.log(profTotal);
+
+        if(profCount == 1) {
             profSyntax = "profanity"
+        } else {
+            profSyntax = "profanities"
         }
 
         if(profCount < 2) {
