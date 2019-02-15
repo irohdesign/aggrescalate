@@ -17,49 +17,49 @@ $("#userSubmit").on("click", function() {
     $("#userEntry").val("");
 
     
-//     // profanity API work
-//     var input = [userEntry,[],false];
-// Algorithmia.client(profApiKey)
-//     .algo("nlp/ProfanityDetection/1.0.0")
-//     .pipe(input)
-//     .then(function(output) {
-//         var objResult = output.result;
+    // profanity API work
+    var input = [userEntry,[],false];
+Algorithmia.client(profApiKey)
+    .algo("nlp/ProfanityDetection/1.0.0")
+    .pipe(input)
+    .then(function(output) {
+        var objResult = output.result;
 
-//         // profanity total
-//         var profTotal = 0;
+        // profanity total
+        var profTotal = 0;
 
-//         var objectProps = Object.getOwnPropertyNames(objResult);
-//         console.log(objectProps);
+        var objectProps = Object.getOwnPropertyNames(objResult);
+        console.log(objectProps);
 
         
-//         $.each(objectProps, function(index, value) {
+        $.each(objectProps, function(index, value) {
             
-//             var num = output.result[objectProps[index]]
-//             console.log(objectProps[index]);
-//             console.log(num);
-//             profTotal += num;
+            var num = output.result[objectProps[index]]
+            console.log(objectProps[index]);
+            console.log(num);
+            profTotal += num;
 
-//         })
-//         var returnText = $("<div>");
-//         var returnInfo;
+        })
+        var returnText = $("<div>");
+        var returnInfo;
 
-//         profCount = objectProps.length;
-//         console.log(profTotal);
+        profCount = objectProps.length;
+        console.log(profTotal);
 
-//         if(profCount == 1) {
-//             profSyntax = "profanity"
-//         } else {
-//             profSyntax = "profanities"
-//         }
+        if(profCount == 1) {
+            profSyntax = "profanity"
+        } else {
+            profSyntax = "profanities"
+        }
 
-//         if(profCount < 2) {
-//             returnInfo = `You've used ${profCount} unique ${profSyntax}. Maybe add some variation to get the message across.`;
-//         } else {
-//             returnInfo = `You've used ${profCount} unique ${profSyntax}, maybe chill out.`;
-//         } 
-//         $(returnText).text(returnInfo);
-//         $("#results").append(returnText);
-//     });
+        if(profCount < 2) {
+            returnInfo = `You've used ${profCount} unique ${profSyntax}. Maybe add some variation to get the message across.`;
+        } else {
+            returnInfo = `You've used ${profCount} unique ${profSyntax}, maybe chill out.`;
+        } 
+        $(returnText).text(returnInfo);
+        $("#results").append(returnText);
+    });
 
     // sentiment API work
     var params = {
@@ -88,9 +88,9 @@ $("#userSubmit").on("click", function() {
         "errors": []
 }
 
-var textExample = {
+var dataBody = {
     id: 1,
-    string: "I want to kill you."
+    string: userEntry
 }
 
 var settings = {
@@ -106,10 +106,16 @@ var settings = {
       "Postman-Token": "8df21c0e-7667-4e28-a39d-3a2d1ec37e62"
     },
     "processData": false,
-    "data": `{\n        \"documents\":[\n            {\n                \"language\": \"en\",\n                \"id\": \"${textExample.id}\",\n                \"text\": \"${textExample.string}\"\n            },\n            {\n                \"language\": \"en\",\n                \"id\": \"2\",\n                \"text\": \"Poorly marked trails! I thought we were goners. Worst hike ever.\"\n            },\n            {\n                \"language\": \"en\",\n                \"id\": \"3\",\n                \"text\": \"Everyone in my family liked the trail but thought it was too challenging for the less athletic among us. Not necessarily recommended for small children.\"\n            },\n            {\n                \"language\": \"en\",\n                \"id\": \"4\",\n                \"text\": \"It was foggy so we missed the spectacular views, but the trail was ok. Worth checking out if you are in the area.\"\n            },                \n            {\n                \"language\": \"en\",\n                \"id\": \"5\",\n                \"text\": \"This is my favorite trail. It has beautiful views and many places to stop and rest\"\n            }\n        ]\n    }`
+    "data": `{\n        \"documents\":[\n            {\n                \"language\": \"en\",\n                \"id\": \"${dataBody.id}\",\n                \"text\": \"${dataBody.string}\"\n            }`
   }
 $.ajax(settings).done(function (response) {
-            console.log(response);
+            console.log(response.documents[0].score);
+
+            var scoreDiv = $("<h3>");
+            scoreDiv.text(`Your score was ${response.documents[0].score}.`);
+            $("#results").append(scoreDiv);
+
+            // $("#results").css
           }); 
 });
 
