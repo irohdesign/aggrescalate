@@ -36,7 +36,7 @@ Algorithmia.client(profApiKey)
             
             var num = output.result[objectProps[index]]
             console.log(objectProps[index]);
-            console.log(num);
+            console.log(`You've said ${objectProps[index]} ${num} times.`);
             profTotal += num;
 
         })
@@ -44,7 +44,8 @@ Algorithmia.client(profApiKey)
         var returnInfo;
 
         profCount = objectProps.length;
-        console.log(profTotal);
+        console.log(`You've used ${profTotal
+    } profanities in total.`);
 
         if(profCount == 1) {
             profSyntax = "profanity"
@@ -59,64 +60,40 @@ Algorithmia.client(profApiKey)
         } 
         $(returnText).text(returnInfo);
         $("#results").append(returnText);
+
     });
 
     // sentiment API work
-    var params = {
-        "documents": [
-            {
-                "id": "1",
-                "score": 0.92014169692993164
-            },
-            {
-                "id": "2",
-                "score": 0.05087512731552124
-            },
-            {
-                "id": "3",
-                "score": 0.80231726169586182
-            },
-            {
-                "id": "4",
-                "score": 0.21357250213623047
-            },
-            {
-                "id": "5",
-                "score": 0.94849288463592529
-            }
-        ],
-        "errors": []
-}
 
-var dataBody = {
-    id: 1,
-    string: userEntry
-}
+// var dataBody = {
+//     id: 1,
+//     string: userEntry
+// }
 
-var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment",
-    "method": "POST",
-    "headers": {
-      "Ocp-Apim-Subscription-Key": "196582ad71c843a4bc3577a865665b8b",
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "cache-control": "no-cache",
-      "Postman-Token": "8df21c0e-7667-4e28-a39d-3a2d1ec37e62"
-    },
-    "processData": false,
-    "data": `{\n        \"documents\":[\n            {\n                \"language\": \"en\",\n                \"id\": \"${dataBody.id}\",\n                \"text\": \"${dataBody.string}\"\n            }`
-  }
-$.ajax(settings).done(function (response) {
-            console.log(response.documents[0].score);
+// var settings = {
+//     "async": true,
+//     "crossDomain": true,
+//     "url": "https://eastus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment",
+//     "method": "POST",
+//     "headers": {
+//       "Ocp-Apim-Subscription-Key": "196582ad71c843a4bc3577a865665b8b",
+//       "Content-Type": "application/json",
+//       "Accept": "application/json",
+//       "cache-control": "no-cache",
+//       "Postman-Token": "8df21c0e-7667-4e28-a39d-3a2d1ec37e62"
+//     },
+//     "processData": false,
+//     "data": `{\n        \"documents\":[\n            {\n                \"language\": \"en\",\n                \"id\": \"${dataBody.id}\",\n                \"text\": \"${dataBody.string}\"\n            }`
+//   }
+// $.ajax(settings).done(function (response) {
+//             console.log(response.documents[0].score);
 
-            var scoreDiv = $("<h3>");
-            scoreDiv.text(`Your score was ${response.documents[0].score}.`);
-            $("#results").append(scoreDiv);
+//             var scoreDiv = $("<h3>");
+//             scoreDiv.text(`Your score was ${response.documents[0].score}.`);
+//             $("#results").append(scoreDiv);
 
-            // $("#results").css
-          }); 
+//             // $("#results").css
+//           }); 
 });
 
 
