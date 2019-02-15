@@ -57,3 +57,5 @@ Algorithmia.client(profApiKey)
 
     });
 });
+
+// add toggle functionality for de-escalating vs escalating

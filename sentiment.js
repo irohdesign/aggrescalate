@@ -85,3 +85,5 @@ var surprise;
 
 
 });
+
+// add toggle functionality for ability to become more or less positive
