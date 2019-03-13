@@ -1,0 +1,20 @@
+[
+    {
+        "name": "escalate",
+        "suggestions": ["Engage in emotional blackmail - hold your relationship over their heads, and make sure they know that their place in your life is in jeopardy.", "Bring up issues from the past to use against them.", "Watch Youtube videos of MMA; they will help sustain your bloodlust.", "Paint in broad strokes, don’t focus in on one issue. Keep them on their toes and confused.", "Use ‘You’ statements and place the blame exclusively on them.", "Set ultimatums and tight time constraints."],
+        "phrases": ["Were you dropped on your head as a baby?", "How dare you…", "You’ll regret this.", "This is your last chance.", "I'll report you.", "My father will hear about this."],
+        "swaps": [["I'm sorry", "you'll be sorry"], ["I wish", "you'll wish"], ["I regret", "you will regret"]]
+    },
+    {
+        "name": "calm",
+        "suggestions": ["Don’t threaten or engage in emotional blackmail.", "Don’t bring up issues from the past to use against them.", "Try walking away from the topic, doing something else for a bit, and coming back when you’ve had the chance to calm down.", "Avoid profanities.", "Explain the problem calmly, but clearly.", "Don’t blame the person you are dealing with.", "Use ‘I’ statements - 'I feel unhappy' or 'I wish things had gone differently.'", "Establish that you appreciate and respect the person on the other side and understand their perspective."],
+        "phrases": ["There has been a misunderstanding", "I understand it’s not your fault, but…", "I’m sorry to bother you, but…", "Excuse me, I wonder if you can help me?"],
+        "swaps": [["You'll be sorry", "I'm sorry"], ["You'll regret", "I regret"]]
+    },
+    {
+        "name": "explicit"
+    },
+    {
+        "name": "personal"
+    }
+]
